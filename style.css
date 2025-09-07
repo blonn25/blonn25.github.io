@@ -10,6 +10,7 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #fdfdfd;
   color: #333;
+  font-size: 1.18rem; /* Slightly smaller, but still larger than initial */
 }
 
 .container {
@@ -20,7 +21,7 @@ body {
 
 .site-title {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2.10rem; /* Slightly smaller */
   font-weight: 600;
   color: #0d3c61;
 }
@@ -42,6 +43,7 @@ nav {
   text-decoration: none;
   color: #0d3c61;
   font-weight: 500;
+  font-size: 1.18rem; /* Slightly smaller */
   padding: 0.3rem 0.5rem;
   border-radius: 4px;
   transition: background-color 0.2s;
@@ -130,8 +132,19 @@ main {
 }
 .intro-content h2 {
   color: #145d86;
-  font-size: 1.5rem;
+  font-size: 1.6rem; /* Slightly smaller */
   margin-bottom: 0.5rem;
+}
+
+/* Style links in intro-content block */
+.intro-content a {
+  color: #145d86;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.intro-content a:hover {
+  color: #0d3c61;
 }
 
 
@@ -148,7 +161,7 @@ main {
 
 .experience-content h2 {
   color: #145d86;
-  font-size: 1.5rem;
+  font-size: 1.6rem; /* Slightly smaller */
   margin-bottom: 0.5rem;
 }
 
@@ -156,7 +169,7 @@ footer {
   text-align: center;
   padding: 1rem 0;
   border-top: 1px solid #cfe0ef;
-  font-size: 0.9rem;
+  font-size: 1.08rem; /* Slightly smaller */
   color: #666;
   background-color: #f6faff;
 }
