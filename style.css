@@ -1,8 +1,13 @@
 /* General styles */
 header {
+  position: fixed;
   background-color: #e9f2fa;
   border-bottom: 1px solid #cfe0ef;
   padding: 1rem 0;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 body {
@@ -11,6 +16,8 @@ body {
   background-color: #fdfdfd;
   color: #333;
   font-size: 1.18rem; /* Slightly smaller, but still larger than initial */
+  padding-top: 95px; /* Adjust this value to match your header's height */
+
 }
 
 .container {
@@ -61,7 +68,7 @@ main {
 
 .intro-layout {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -172,4 +179,24 @@ footer {
   font-size: 1.08rem; /* Slightly smaller */
   color: #666;
   background-color: #f6faff;
+}
+
+
+/* Mobile layout: stack sidebar above intro-content */
+@media (max-width: 600px) {
+  .intro-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .sidebar {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    min-width: unset;
+    height: auto;
+  }
+  .intro-content {
+    width: 100%;
+  }
 }
