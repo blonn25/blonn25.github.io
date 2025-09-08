@@ -6,6 +6,22 @@
   <title>Beau Lonnquist</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Standard favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Apple Touch Icon (iOS) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Android/Chrome -->
+  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+
+  <!-- Manifest (optional, for PWA) -->
+  <link rel="manifest" href="site.webmanifest">
+
 </head>
 <body>
   <header>
@@ -13,13 +29,14 @@
       <h1 class="site-title">Beau Lonnquist</h1>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="research.html">Research</a></li>
-          <li><a href="teaching.html">Teaching</a></li>
-          <li><a href="cv.html">CV</a></li>
-          <li><a href="cv-2.html">CV-2</a></li>
-          <li><a href="fun.html">For Fun</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#pubs">Publications</a></li>
+          <!-- <li><a href="teaching.html">Teaching</a></li> -->
+          <!-- <li><a href="cv.html">CV</a></li> -->
+          <!-- <li><a href="cv-2.html">CV-2</a></li> -->
+          <!-- <li><a href="fun.html">For Fun</a></li> -->
+          <!-- <li><a href="contact.html">Contact</a></li> -->
         </ul>
       </nav>
     </div>
@@ -43,7 +60,7 @@
       </aside>
       <div class="intro-content">
         <p>
-          Hi, I'm Beau—a first-year <a href="https://biophysics.ucsf.edu/" target="_blank">Biophysics</a> PhD student at the <a href="https://www.ucsf.edu/" target="_blank">University of California, San Francisco (UCSF)</a>! My current research interests are in computational approaches to biomolecular modeling, simulation, and design with broad applications across drug discovery, protein engineering, and synthetic biology.
+          Hi, I'm Beau—a first-year <a href="https://biophysics.ucsf.edu/" target="_blank">Biophysics</a> PhD student at the <a href="https://www.ucsf.edu/" target="_blank">University of California, San Francisco</a>! My current research interests are in computational approaches to biomolecular modeling, simulation, and design with broad applications across drug discovery, protein engineering, and synthetic biology. My research is also generously supported by the <a href="https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program" target="_blank">National Science Foundation Graduate Research Fellowship Program</a>.
         </p>
         <p>
           I received my BS in <a href="https://bioe.uw.edu/" target="_blank">Bioengineering</a> with an Option in Data Science from the <a href="https://www.washington.edu/" target="_blank">University of Washington</a> in 2025. As an undergraduate researcher, I designed sequence-specific DNA-binding proteins and transcription factors as a member of the <a href="https://www.bakerlab.org/" target="_blank">Baker Lab</a> at the <a href="https://www.ipd.uw.edu/" target="_blank">Institute for Protein Design</a>. I also interned at <a href="https://www.gene.com/" target="_blank">Genentech</a> as a Cell Therapy Process Engineer where I automated processes for stem cell therapy manufacturing and used molecular docking to identify lead compounds for future cancer drugs.
@@ -54,12 +71,24 @@
       </div>
     </section>
  
-    <section class="experience-layout">
-      <div class="experience-content">
-        <h2>Experience</h2>
-        <p>{insert some content here}</p>
+    <section class="news-layout">
+      <div class="news-content">
+        <h2 id="news">News</h2>
+        <p>
+          {insert some content here}
+        </p>
       </div>
     </section>
+
+    <section class="pubs-layout">
+      <div class="pubs-content">
+        <h2 id="pubs">Selected Publications</h2>
+        <p>
+          {insert some content here}
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <footer>
