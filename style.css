@@ -10,6 +10,12 @@ header {
   z-index: 1000;
 }
 
+.header-logo {
+  height: 70px;
+  width: 70px;
+}
+
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -35,6 +41,7 @@ body {
 
 nav {
   margin-top: 0.5rem;
+  margin-right: 1.0rem;
 }
 
 .nav-links {
@@ -43,7 +50,7 @@ nav {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.0rem;
 }
 
 .nav-links a {
@@ -207,6 +214,11 @@ footer {
 /* Mobile layout: stack sidebar above intro-content */
 @media (max-width: 600px) {
 
+  .header-logo {
+    height: 40px;
+    width: 40px;
+  }
+  
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
