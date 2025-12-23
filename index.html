@@ -610,18 +610,23 @@
         <div class="carousel-container" id="carousel">
           <div class="news-item">
             <img src="assets/Speaker_Grad_Photo.jpg" alt="Graduation Speaker Photo" class="news-image">
-            <h3 class="news-title">Graduation from the University of Washington</h3>
+            <h3 class="news-title">Graduated from the University of Washington</h3>
             <p class="news-description">I graduated summa cum laude from the University of Washington with a BS in Bioengineering and an Option in Data Science.</p>
           </div>
           <div class="news-item">
             <img src="assets/Schrodinger_Science_Fair_Winner_Announcement.jpeg" alt="Schrödinger Winner Announcement" class="news-image">
-            <h3 class="news-title">Schrödinger's Molecules and Models Science Fair Winner</h3>
-            <p class="news-description">I presented my work designing de novo transcription factors at Schrödinger's Molecules and Models Science Fair and was honored as a winner. Check out my presentation and presentations of other finalists <a href="https://www.schrodinger.com/life-science/resources/event/educators-month-molecules-models-a-virtual-science-fair/" target="_blank">here</a>!</p>
+            <h3 class="news-title">Named a Winner of Schrödinger's Virtual Science Fair</h3>
+            <p class="news-description">I shared my work designing de novo transcription factors at Schrödinger's Molecules and Models Science Fair and was honored as a winner. Check out finalist presentations <a href="https://www.schrodinger.com/life-science/resources/event/educators-month-molecules-models-a-virtual-science-fair/" target="_blank">here</a>!</p>
+          </div>
+          <div class="news-item">
+            <img src="assets/Senior_Capstone_Photo.jpg" alt="Senior Capstone Photo" class="news-image">
+            <h3 class="news-title">Presented Bioengineering Senior Capstone Project</h3>
+            <p class="news-description">I presented my research designing DNA-bending transcription factors for enhanced genetic control at UW Bioengineering's Senior Capstone Showcase!</p>
           </div>
           <div class="news-item">
             <img src="assets/NSF_Logo.jpeg" alt="NSF GRFP Award" class="news-image">
-            <h3 class="news-title">NSF Graduate Research Fellowship Awarded</h3>
-            <p class="news-description">I received a fellowship to support my graduate studies through the National Science Foundation Graduate Research Fellowship Program.</p>
+            <h3 class="news-title">Awarded NSF Graduate Research Fellowship</h3>
+            <p class="news-description">I received a fellowship through the National Science Foundation Graduate Research Fellowship Program to support my graduate studies.</p>
           </div>
         </div>
       </div>
@@ -629,7 +634,7 @@
     </section>
 
     <section class="pubs-section" id="pubs">
-      <h2 class="section-header">Selected Publications</h2>
+      <h2 class="section-header">Publications</h2>
       <div class="pubs-grid">
         <div class="publication">
           <div class="pub-title">Computational design of sequence-specific DNA-binding proteins</div>
@@ -708,9 +713,13 @@
     }
 
     function updateCarousel() {
-      const itemsPerView = getItemsPerView();
-      const offset = -currentIndex * (100 / itemsPerView);
-      carousel.style.transform = `translateX(${offset}%)`;
+      // Calculate offset based on actual item width + gap
+      const firstItem = newsItems[0];
+      const itemWidth = firstItem.getBoundingClientRect().width;
+      const gap = parseFloat(window.getComputedStyle(carousel).gap) || 0;
+      const offset = -currentIndex * (itemWidth + gap);
+      
+      carousel.style.transform = `translateX(${offset}px)`;
       
       const dots = document.querySelectorAll('.dot');
       dots.forEach((dot, index) => {
