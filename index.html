@@ -4,67 +4,580 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beau Lonnquist</title>
-  <meta name="description" content="Hi, I'm Beau—a first-year Biophysics PhD student at UCSF! My current research interests are in computational approaches to biomolecular modeling, simulation, and design with broad applications across drug discovery, protein engineering, and synthetic biology. My research is also generously supported by an award through the NSF GRFP. I received my BS in Bioengineering with an Option in Data Science from the University of Washington in 2025. As an undergraduate researcher, I designed sequence-specific DNA-binding proteins and transcription factors as a member of the Baker Lab at the Institute for Protein Design. I also interned at Genentech as a Cell Therapy Process Engineer where I automated processes for stem cell therapy manufacturing and used molecular docking to identify lead compounds for future cancer drugs.">
+  <meta name="description" content="Hi, I'm Beau—a first-year Biophysics PhD student at UCSF! My current research interests are in computational approaches to biomolecular modeling, simulation, and design with broad applications across drug discovery, protein engineering, and synthetic biology.">
   <meta name="google-site-verification" content="MXMcEnUCf0DCw9gvu966f1EM5q_luQ0ns1OWxp6w_EM" />
   <meta name="robots" content="noimageindex">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Standard favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="image/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="image/favicon-16x16.png">
-  <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    :root {
+      --primary-blue: #1a73e8;
+      --dark-blue: #0d47a1;
+      --light-blue: #4285f4;
+      --accent-blue: #00bcd4;
+      --bg-primary: #0a0e27;
+      --bg-secondary: #111633;
+      --bg-card: rgba(26, 115, 232, 0.05);
+      --text-primary: #e8eaed;
+      --text-secondary: #9aa0a6;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
 
-  <!-- Apple Touch Icon (iOS) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="image/apple-touch-icon.png">
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-  <!-- Android/Chrome -->
-  <link rel="icon" type="image/png" sizes="192x192" href="image/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="image/android-chrome-512x512.png">
+    /* Animated background gradient */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(26, 115, 232, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 188, 212, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: gradientShift 15s ease infinite;
+    }
 
-  <!-- Manifest (optional, for PWA) -->
-  <link rel="manifest" href="image/site.webmanifest">
+    @keyframes gradientShift {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1.5rem 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 1rem 0;
+      box-shadow: 0 4px 20px rgba(26, 115, 232, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-title {
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--light-blue), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .header-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .header-logo:hover {
+      opacity: 1;
+    }
+
+    /* Main content */
+    main {
+      padding-top: 140px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Intro section */
+    .intro-layout {
+      display: flex;
+      gap: 3rem;
+      padding-top: 11rem;
+      margin-bottom: 6rem;
+      align-items: flex-start;
+    }
+
+    .sidebar {
+      flex-shrink: 0;
+      width: 280px;
+    }
+
+    .profile-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(26, 115, 232, 0.2);
+    }
+
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 3px solid var(--glass-border);
+      box-shadow: 0 4px 20px rgba(26, 115, 232, 0.2);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--light-blue);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary-blue);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+    }
+
+    .cv-download-btn {
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .cv-download-btn button {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+    }
+
+    .cv-download-btn button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(26, 115, 232, 0.5);
+    }
+
+    .intro-content {
+      flex: 1;
+      animation: slideInRight 0.8s ease forwards;
+      animation-delay: 0.2s;
+      opacity: 0;
+    }
+
+    @keyframes slideInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      from {
+        transform: translateX(20px);
+      }
+    }
+
+    .intro-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-content a {
+      color: var(--light-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .intro-content a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* Section headers */
+    .section-header {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, var(--light-blue), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+    }
+
+    /* News carousel */
+    .news-section {
+      margin-bottom: 6rem;
+      scroll-margin-top: 100px;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .carousel-container {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 1.5rem;
+    }
+
+    .news-item {
+      flex: 0 0 calc(33.333% - 1rem);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(26, 115, 232, 0.3);
+      border-color: var(--primary-blue);
+    }
+
+    .news-image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      border: 2px solid var(--glass-border);
+    }
+
+    .news-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .news-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .news-description a {
+      color: var(--light-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .news-description a:hover {
+      color: var(--accent-blue);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--glass-border);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--primary-blue);
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    /* Publications section */
+    .pubs-section {
+      margin-bottom: 6rem;
+      scroll-margin-top: 100px;
+    }
+
+    .pubs-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .publication {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .publication:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(26, 115, 232, 0.3);
+      border-color: var(--primary-blue);
+    }
+
+    .pub-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .pub-authors {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .pub-details {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .pub-btn {
+      padding: 0.6rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+    }
+
+    .pub-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(26, 115, 232, 0.5);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      margin-top: 4rem;
+    }
+
+    footer p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+
+      main {
+        padding-top: 100px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      .header-logo {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+      }
+
+      .intro-layout {
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 10rem;
+        margin-bottom: 4rem;
+      }
+
+      .sidebar {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        font-size: 2rem;
+      }
+
+      .news-item {
+        flex: 0 0 100%;
+      }
+
+      .carousel-container {
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container" style="position: relative;">
-      <h1 class="site-title">Beau Lonnquist</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#news">News</a></li>
-          <li><a href="#pubs">Publications</a></li>
-          <!-- <li><a href="teaching.html">Teaching</a></li> -->
-          <!-- <li><a href="cv.html">CV</a></li> -->
-          <!-- <li><a href="cv-2.html">CV-2</a></li> -->
-          <!-- <li><a href="fun.html">For Fun</a></li> -->
-          <!-- <li><a href="contact.html">Contact</a></li> -->
-        </ul>
-      </nav>
-  <img src="image/favicon-transparent_bg.png" alt="Site Icon" class="header-logo" style="position: absolute; top: -5px; right: 10px; object-fit: contain;" />
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="site-title">Beau Lonnquist</h1>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#pubs">Publications</a></li>
+          </ul>
+        </nav>
+        <img src="image/favicon-transparent_bg.png" alt="Site Icon" class="header-logo" />
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="intro-layout">
+    <section class="intro-layout" id="about">
       <aside class="sidebar">
-        <div class="profile-photo">
-          <img src="assets/Lonnquist-Headshot.jpg" alt="Beau Lonnquist" />
+        <div class="profile-card">
+          <div class="profile-photo">
+            <img src="assets/Lonnquist-Headshot.jpg" alt="Beau Lonnquist" />
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/blonn25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/beau-lonnquist/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://orcid.org/0009-0006-1778-2135" target="_blank" title="ORCiD"><i class="fab fa-orcid"></i></a>
+            <a href="https://scholar.google.com/citations?user=GdGDEaEAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          </div>
+          <a class="cv-download-btn" href="assets/BL-CV_Aut25.pdf" target="_blank">
+            <button type="button"><i class="fas fa-file-download"></i> Full CV</button>
+          </a>
         </div>
-        <div class="social-links">
-          <a href="https://github.com/blonn25" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com/in/beau-lonnquist/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://orcid.org/0009-0006-1778-2135" target="_blank" title="ORCiD"><i class="fab fa-orcid"></i></a>
-          <a href="https://scholar.google.com/citations?user=GdGDEaEAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-        </div>
-        <a class="cv-download-btn" href="assets/BL-CV_Aut25.pdf" target="_blank">
-          <button type="button"><i class="fas fa-file-download"></i> Full CV</button>
-        </a>
       </aside>
       <div class="intro-content">
         <p>
-          Hi, I'm Beau—a first-year <a href="https://biophysics.ucsf.edu/" target="_blank">Biophysics</a> PhD student at <a href="https://www.ucsf.edu/" target="_blank">UCSF</a>! My current research interests are in computational approaches to biomolecular modeling, simulation, and design with broad applications across drug discovery, protein engineering, and synthetic biology. My research is also generously supported by an award through the <a href="https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program" target="_blank">NSF Graduate Research Fellowship Program</a>.
+          Hi, I'm Beau—a current <a href="https://biophysics.ucsf.edu/" target="_blank">Biophysics</a> PhD student at <a href="https://www.ucsf.edu/" target="_blank">UCSF</a>! My current research interests are in computational approaches to biomolecular modeling, simulation, and design with broad applications across drug discovery, protein engineering, and synthetic biology. My research is also generously supported by an award through the <a href="https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program" target="_blank">NSF Graduate Research Fellowship Program</a>.
         </p>
         <p>
           I received my BS in <a href="https://bioe.uw.edu/" target="_blank">Bioengineering</a> with an Option in Data Science from the <a href="https://www.washington.edu/" target="_blank">University of Washington</a> in 2025. As an undergraduate researcher, I designed sequence-specific DNA-binding proteins and transcription factors as a member of the <a href="https://www.bakerlab.org/" target="_blank">Baker Lab</a> at the <a href="https://www.ipd.uw.edu/" target="_blank">Institute for Protein Design</a>. I also interned at <a href="https://www.gene.com/" target="_blank">Genentech</a> as a Cell Therapy Process Engineer where I automated processes for stem cell therapy manufacturing and used molecular docking to identify lead compounds for future cancer drugs.
@@ -74,38 +587,47 @@
         </p>
       </div>
     </section>
- 
-    <section class="news-layout">
-      <div class="news-content">
-        <h2 id="news">News</h2>
-        <p>
-          No news yet! Check back soon...
-        </p>
+
+    <section class="news-section" id="news">
+      <h2 class="section-header">News</h2>
+      <div class="carousel-wrapper">
+        <div class="carousel-container" id="carousel">
+          <div class="news-item">
+            <img src="assets/Speaker_Grad_Photo.jpg" alt="Graduation Speaker Photo" class="news-image">
+            <h3 class="news-title">Graduation from the University of Washington</h3>
+            <p class="news-description">I graduated summa cum laude from the University of Washington with a BS in Bioengineering and an Option in Data Science.</p>
+          </div>
+          <div class="news-item">
+            <img src="assets/Schrodinger_Science_Fair_Winner_Announcement.jpeg" alt="Schrödinger Winner Announcement" class="news-image">
+            <h3 class="news-title">Schrödinger's Molecules and Models Science Fair Winner</h3>
+            <p class="news-description">I presented my work designing de novo transcription factors at Schrödinger's Molecules and Models Science Fair and was honored as a winner. Check out my presentation and presentations of other finalists <a href="https://www.schrodinger.com/life-science/resources/event/educators-month-molecules-models-a-virtual-science-fair/" target="_blank">here</a>!</p>
+          </div>
+          <div class="news-item">
+            <img src="assets/NSF_Logo.jpeg" alt="NSF GRFP Award" class="news-image">
+            <h3 class="news-title">NSF Graduate Research Fellowship Awarded</h3>
+            <p class="news-description">I received a fellowship to support my graduate studies through the National Science Foundation Graduate Research Fellowship Program.</p>
+          </div>
+        </div>
       </div>
+      <div class="carousel-dots" id="dots"></div>
     </section>
 
-    <section class="pubs-layout">
-      <div class="pubs-content">
-        <h2 id="pubs">Selected Publications</h2>
-        <div class="pubs-list">
-          <!-- Example publication template -->
-          <div class="publication">
-            <div class="pub-title"><strong>Computational design of sequence-specific DNA-binding proteins</strong></div>
-            <div class="pub-authors">Cameron J Glasscock, Robert J Pecoraro, Ryan McHugh, Lindsey A Doyle, Wei Chen, Olivier Boivin, <strong>Beau Lonnquist</strong>, Emily Na, Yuliya Politanska, Hugh K Haddox, David Cox, Christoffer Norn, Brian Coventry, Inna Goreshnik, Dionne Vafeados, Gyu Rie Lee, Raluca Gordan, Barry L Stoddard, Frank DiMaio, David Baker</div>
-            <div class="pub-details">
-              <span class="pub-journal"><em>Nature Structural & Molecular Biology</em></span> |
-              <span class="pub-year">2025</span>
-            </div>
-            <div class="pub-links">
-              <a href="https://doi.org/10.1038/s41594-025-01669-4" target="_blank" class="pub-btn">DOI</a>
-              <a href="assets/Computational design of sequence-specific DNA-binding proteins.pdf" target="_blank" class="pub-btn">PDF</a>
-            </div>
+    <section class="pubs-section" id="pubs">
+      <h2 class="section-header">Selected Publications</h2>
+      <div class="pubs-grid">
+        <div class="publication">
+          <div class="pub-title">Computational design of sequence-specific DNA-binding proteins</div>
+          <div class="pub-authors">Cameron J Glasscock, Robert J Pecoraro, Ryan McHugh, Lindsey A Doyle, Wei Chen, Olivier Boivin, <strong>Beau Lonnquist</strong>, Emily Na, Yuliya Politanska, Hugh K Haddox, David Cox, Christoffer Norn, Brian Coventry, Inna Goreshnik, Dionne Vafeados, Gyu Rie Lee, Raluca Gordan, Barry L Stoddard, Frank DiMaio, David Baker</div>
+          <div class="pub-details">
+            <span class="pub-journal">Nature Structural & Molecular Biology</span> | <span class="pub-year">2025</span>
           </div>
-          <!-- Add more .publication blocks below for each publication -->
+          <div class="pub-links">
+            <a href="https://doi.org/10.1038/s41594-025-01669-4" target="_blank" class="pub-btn">DOI</a>
+            <a href="assets/Computational design of sequence-specific DNA-binding proteins.pdf" target="_blank" class="pub-btn">PDF</a>
+          </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -113,6 +635,88 @@
       <p>&copy; 2025 Beau Lonnquist</p>
     </div>
   </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Carousel functionality
+    const carousel = document.getElementById('carousel');
+    const dotsContainer = document.getElementById('dots');
+    const newsItems = document.querySelectorAll('.news-item');
+    let currentIndex = 0;
+    const totalSlides = newsItems.length;
+    let autoScrollInterval;
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateCarousel() {
+      const offset = -currentIndex * (100 / 3);
+      carousel.style.transform = `translateX(${offset}%)`;
+      
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+      resetAutoScroll();
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoScroll() {
+      clearInterval(autoScrollInterval);
+      startAutoScroll();
+    }
+
+    // Start auto-scroll
+    startAutoScroll();
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+      clearInterval(autoScrollInterval);
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      startAutoScroll();
+    });
+  </script>
 </body>
 </html>
-
