@@ -335,6 +335,7 @@
     .carousel-wrapper {
       position: relative;
       overflow: hidden;
+      padding-top: 5px;
       border-radius: 20px;
     }
 
@@ -345,7 +346,7 @@
     }
 
     .news-item {
-      flex: 0 0 calc(33.333% - 1rem);
+      flex: 0 0 calc(33.333% - 1rem); /* Show 3 items at a time */
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
@@ -678,24 +679,40 @@
     const dotsContainer = document.getElementById('dots');
     const newsItems = document.querySelectorAll('.news-item');
     let currentIndex = 0;
-    const totalSlides = newsItems.length;
     let autoScrollInterval;
 
-    // Create dots
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('div');
-      dot.classList.add('dot');
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
+    // Determine items per view based on screen size
+    function getItemsPerView() {
+      return window.innerWidth <= 768 ? 1 : 3;
     }
 
-    const dots = document.querySelectorAll('.dot');
+    // Calculate total number of slides
+    function getTotalSlides() {
+      const itemsPerView = getItemsPerView();
+      return newsItems.length - itemsPerView + 1;
+    }
+
+    // Create dots based on screen size
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      const itemsPerView = getItemsPerView();
+      const totalDots = itemsPerView === 1 ? newsItems.length : getTotalSlides();
+      
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
 
     function updateCarousel() {
-      const offset = -currentIndex * (100 / 3);
+      const itemsPerView = getItemsPerView();
+      const offset = -currentIndex * (100 / itemsPerView);
       carousel.style.transform = `translateX(${offset}%)`;
       
+      const dots = document.querySelectorAll('.dot');
       dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentIndex);
       });
@@ -708,6 +725,7 @@
     }
 
     function nextSlide() {
+      const totalSlides = getTotalSlides();
       currentIndex = (currentIndex + 1) % totalSlides;
       updateCarousel();
     }
@@ -721,7 +739,8 @@
       startAutoScroll();
     }
 
-    // Start auto-scroll
+    // Initialize carousel
+    createDots();
     startAutoScroll();
 
     // Pause on hover
@@ -731,6 +750,17 @@
 
     carousel.addEventListener('mouseleave', () => {
       startAutoScroll();
+    });
+
+    // Reinitialize on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        currentIndex = 0;
+        createDots();
+        updateCarousel();
+      }, 250);
     });
   </script>
 </body>
