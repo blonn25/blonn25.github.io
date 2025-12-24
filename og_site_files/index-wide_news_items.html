@@ -181,8 +181,8 @@
     .intro-layout {
       display: flex;
       gap: 3rem;
-      padding-top: 10rem;
-      margin-bottom: 4rem;
+      padding-top: 11rem;
+      margin-bottom: 6rem;
       align-items: flex-start;
     }
 
@@ -318,7 +318,7 @@
     .section-header {
       font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 1.25rem;
+      margin-bottom: 3rem;
       background: linear-gradient(135deg, var(--light-blue), var(--accent-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -328,7 +328,7 @@
 
     /* News carousel */
     .news-section {
-      margin-bottom: 4rem;
+      margin-bottom: 6rem;
       scroll-margin-top: 100px;
     }
 
@@ -346,7 +346,7 @@
     }
 
     .news-item {
-      flex: 0 0 calc(33.333% - 1rem); /* Show 3 items at a time */
+      flex: 0 0 calc(50% - 0.75rem); /* Show 2 items at a time on desktop */
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
@@ -354,6 +354,9 @@
       padding: 1.5rem;
       transition: all 0.3s ease;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     .news-item:hover {
@@ -363,12 +366,19 @@
     }
 
     .news-image {
-      width: 100%;
+      width: 33.333%;
+      flex-shrink: 0;
       aspect-ratio: 1;
       object-fit: cover;
       border-radius: 16px;
-      margin-bottom: 1rem;
       border: 2px solid var(--glass-border);
+    }
+
+    .news-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: top;
     }
 
     .news-title {
@@ -418,7 +428,7 @@
 
     /* Publications section */
     .pubs-section {
-      margin-bottom: 4rem;
+      margin-bottom: 6rem;
       scroll-margin-top: 100px;
     }
 
@@ -522,12 +532,11 @@
       }
 
       .header-logo {
-        display: none;
-        /* position: absolute;
+        position: absolute;
         top: 1rem;
         right: 1.5rem;
         width: 40px;
-        height: 40px; */
+        height: 40px;
       }
 
       .intro-layout {
@@ -545,11 +554,15 @@
 
       .section-header {
         font-size: 2rem;
-        margin-bottom: 1rem;
       }
 
       .news-item {
         flex: 0 0 100%;
+        flex-direction: column;
+      }
+
+      .news-image {
+        width: 100%;
       }
 
       .carousel-container {
@@ -612,23 +625,31 @@
         <div class="carousel-container" id="carousel">
           <div class="news-item">
             <img src="assets/Speaker_Grad_Photo.jpg" alt="Graduation Speaker Photo" class="news-image">
-            <h3 class="news-title">Graduated from the University of Washington</h3>
-            <p class="news-description">I graduated summa cum laude from the University of Washington with a BS in Bioengineering and an Option in Data Science.</p>
+            <div class="news-content">
+              <h3 class="news-title">Graduated from the University of Washington</h3>
+              <p class="news-description">I graduated summa cum laude from the University of Washington with a BS in Bioengineering and an Option in Data Science.</p>
+            </div>
           </div>
           <div class="news-item">
             <img src="assets/Schrodinger_Science_Fair_Winner_Announcement.jpeg" alt="Schrödinger Winner Announcement" class="news-image">
-            <h3 class="news-title">Named a Winner of Schrödinger's Virtual Science Fair</h3>
-            <p class="news-description">I shared my work designing de novo transcription factors at Schrödinger's Molecules and Models Science Fair and was honored as a winner. Check out finalist presentations <a href="https://www.schrodinger.com/life-science/resources/event/educators-month-molecules-models-a-virtual-science-fair/" target="_blank">here</a>!</p>
+            <div class="news-content">
+              <h3 class="news-title">Named a Winner of Schrödinger's Virtual Science Fair</h3>
+              <p class="news-description">I shared my work designing de novo transcription factors at Schrödinger's Molecules and Models Science Fair and was honored as a winner. Check out finalist presentations <a href="https://www.schrodinger.com/life-science/resources/event/educators-month-molecules-models-a-virtual-science-fair/" target="_blank">here</a>!</p>
+            </div>
           </div>
           <div class="news-item">
             <img src="assets/Senior_Capstone_Photo.jpg" alt="Senior Capstone Photo" class="news-image">
-            <h3 class="news-title">Presented Bioengineering Senior Capstone Project</h3>
-            <p class="news-description">I presented my research designing DNA-bending transcription factors for enhanced genetic control at UW Bioengineering's Senior Capstone Showcase!</p>
+            <div class="news-content">
+              <h3 class="news-title">Presented Bioengineering Senior Capstone Project</h3>
+              <p class="news-description">I presented my research designing DNA-bending transcription factors for enhanced genetic control at UW Bioengineering's Senior Capstone Showcase!</p>
+            </div>
           </div>
           <div class="news-item">
             <img src="assets/NSF_Logo.jpeg" alt="NSF GRFP Award" class="news-image">
-            <h3 class="news-title">Awarded NSF Graduate Research Fellowship</h3>
-            <p class="news-description">I received a fellowship through the National Science Foundation Graduate Research Fellowship Program to support my graduate studies.</p>
+            <div class="news-content">
+              <h3 class="news-title">Awarded NSF Graduate Research Fellowship</h3>
+              <p class="news-description">I received a fellowship through the National Science Foundation Graduate Research Fellowship Program to support my graduate studies.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -690,7 +711,7 @@
 
     // Determine items per view based on screen size
     function getItemsPerView() {
-      return window.innerWidth <= 768 ? 1 : 3;
+      return window.innerWidth <= 768 ? 1 : 2;
     }
 
     // Calculate total number of slides
