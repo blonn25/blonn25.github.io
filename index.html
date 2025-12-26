@@ -35,10 +35,10 @@
     }
 
     :root {
-      --primary-blue: #1a73e8;
+      --primary-blue: #1c74e9;
       --dark-blue: #0d47a1;
       --light-blue: #4285f4;
-      --accent-blue: #00bcd4;
+      --accent-blue: #00bdd6;
       --bg-primary: #0a0e27;
       --bg-secondary: #111633;
       --bg-card: rgba(26, 115, 232, 0.05);
@@ -447,12 +447,28 @@
       padding: 2rem;
       transition: all 0.3s ease;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
     }
 
     .publication:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 30px rgba(26, 115, 232, 0.3);
       border-color: var(--primary-blue);
+    }
+
+    .pub-image {
+      flex: 0 0 20%;
+      width: 20%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+
+    .pub-content {
+      flex: 1;
+      min-width: 0;
     }
 
     .pub-title {
@@ -567,6 +583,16 @@
       .carousel-container {
         gap: 1rem;
       }
+
+      .publication {
+        flex-direction: column;
+      }
+
+      .pub-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
     }
   </style>
 </head>
@@ -655,14 +681,17 @@
       <h2 class="section-header">Publications</h2>
       <div class="pubs-grid">
         <div class="publication">
-          <div class="pub-title">Computational design of sequence-specific DNA-binding proteins</div>
-          <div class="pub-authors">Cameron J Glasscock, Robert J Pecoraro, Ryan McHugh, Lindsey A Doyle, Wei Chen, Olivier Boivin, <strong>Beau Lonnquist</strong>, Emily Na, Yuliya Politanska, Hugh K Haddox, David Cox, Christoffer Norn, Brian Coventry, Inna Goreshnik, Dionne Vafeados, Gyu Rie Lee, Raluca Gordan, Barry L Stoddard, Frank DiMaio, David Baker</div>
-          <div class="pub-details">
-            <span class="pub-journal">Nature Structural & Molecular Biology</span> | <span class="pub-year">2025</span>
-          </div>
-          <div class="pub-links">
-            <a href="https://doi.org/10.1038/s41594-025-01669-4" target="_blank" class="pub-btn">DOI</a>
-            <a href="assets/Computational design of sequence-specific DNA-binding proteins.pdf" target="_blank" class="pub-btn">PDF</a>
+          <img src="assets/8TAC-blender_animation.png" alt="DNA-binding protein" class="pub-image">
+          <div class="pub-content">
+            <div class="pub-title">Computational design of sequence-specific DNA-binding proteins</div>
+            <div class="pub-authors">Cameron J Glasscock, Robert J Pecoraro, Ryan McHugh, Lindsey A Doyle, Wei Chen, Olivier Boivin, <strong>Beau Lonnquist</strong>, Emily Na, Yuliya Politanska, Hugh K Haddox, David Cox, Christoffer Norn, Brian Coventry, Inna Goreshnik, Dionne Vafeados, Gyu Rie Lee, Raluca Gordan, Barry L Stoddard, Frank DiMaio, David Baker</div>
+            <div class="pub-details">
+              <span class="pub-journal">Nature Structural & Molecular Biology</span> | <span class="pub-year">2025</span>
+            </div>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1038/s41594-025-01669-4" target="_blank" class="pub-btn">DOI</a>
+              <a href="assets/Computational design of sequence-specific DNA-binding proteins.pdf" target="_blank" class="pub-btn">PDF</a>
+            </div>
           </div>
         </div>
       </div>
